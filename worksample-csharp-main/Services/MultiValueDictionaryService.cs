@@ -40,7 +40,7 @@ namespace MultiValueDictionary.Services
                 var functions = new Dictionary<string, Func<List<string>, List<string>>>
                 {
                     { "KEYS", (p) => _commandService.ProcessKeysCommand() },
-                    { "MEMBERS", (p) => _commandService.ProcessMembersComand(p[0]) },
+                    { "MEMBERS", (p) => _commandService.ProcessMembersCommand(p[0]) },
                     { "ADD",  (p) => _commandService.ProcessAddCommand(p[0], p[1]) },
                     { "REMOVE", (p) => _commandService.ProcessRemoveCommand(p[0], p[1]) },
                     { "REMOVEALL",  (p) => _commandService.ProcessRemoveAllCommand(p[0]) },
@@ -48,7 +48,8 @@ namespace MultiValueDictionary.Services
                     { "KEYEXISTS",  (p) => _commandService.ProcessKeyExistsCommand(p[0]) },
                     { "MEMBEREXISTS", (p) => _commandService.ProcessMemberExistsCommand(p[0], p[1]) },
                     { "ALLMEMBERS",  (p) => _commandService.ProcessAllMembersCommand() },
-                    { "ITEMS",  (p) => _commandService.ProcessItemsCommand() }
+                    { "ITEMS",  (p) => _commandService.ProcessItemsCommand() },
+                    { "INTERSECT", (p) => _commandService.ProcessIntersectCommand(p[0], p[1]) }
                 };
 
                 var results = new List<string>();

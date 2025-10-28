@@ -80,6 +80,26 @@ namespace MultiValueDictionary.Services
             return KeyExists(key);
         }
 
+        public List<string> GetIntersect(string firstKey, string secondKey)
+        {
+            var firstMembers = GetDictionaryMembers(firstKey);
+            var secondMembers = GetDictionaryMembers(secondKey);
+
+            if (!firstMembers.Any() || !secondMembers.Any())
+            {
+                return new List<string> { ") empty set " };
+            }
+
+            var results = firstMembers.Where(x => secondMembers.Contains(x)).ToList();
+
+            if (!results.Any())
+            {
+                return new List<string> { ") empty set " };
+            }
+
+            return results.AsEnumerable().Select((x, index) => $"{index + 1}) {x}").ToList(); ;
+        }
+
         private Tuple<string, string> GetItem(string key, string value)
         {
             _dictionary.TryGetValue(CreateTuple(key, value), out Tuple<string, string> item);

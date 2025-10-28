@@ -6,7 +6,7 @@ namespace MultiValueDictionary.Services
     {
         List<string> ProcessKeysCommand();
 
-        List<string> ProcessMembersComand(string key);
+        List<string> ProcessMembersCommand(string key);
 
         List<string> ProcessAddCommand(string key, string value);
 
@@ -23,5 +23,7 @@ namespace MultiValueDictionary.Services
         List<string> ProcessAllMembersCommand();
 
         List<string> ProcessItemsCommand();
+
+        List<string> ProcessIntersectCommand(string firstKey, string secondKey);
     }
 }

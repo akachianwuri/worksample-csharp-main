@@ -19,7 +19,8 @@ namespace MultiValueDictionary.Services
             "KEYEXISTS",
             "MEMBEREXISTS",
             "ALLMEMBERS",
-            "ITEMS"
+            "ITEMS",
+            "INTERSECT"
         };
 
         public bool IsValidCommand(List<string> wordsEntered)
@@ -64,7 +65,8 @@ namespace MultiValueDictionary.Services
                 { "KEYEXISTS",  (p) => ValidateKeyExistsCommand(p) },
                 { "MEMBEREXISTS", (p) => ValidateMemberExistsCommand(p) },
                 { "ALLMEMBERS",  (p) => ValidateAllMembersCommand(p) },
-                { "ITEMS",  (p) => ValidateItemsCommand(p) }
+                { "ITEMS",  (p) => ValidateItemsCommand(p) },
+                { "INTERSECT", (p) => ValidateIntersectCommand(p) }
             };
 
             var functionExists = functions.TryGetValue(command, out var functionToRun);
@@ -72,6 +74,16 @@ namespace MultiValueDictionary.Services
             if (functionExists)
             {
                 return functionToRun(parameters);
+            }
+
+            return string.Empty;
+        }
+
+        private static string ValidateIntersectCommand(List<string> parameters)
+        {
+            if (parameters.Count != 2)
+            {
+                return ") Please enter a valid command with parameters.";
             }
 
             return string.Empty;

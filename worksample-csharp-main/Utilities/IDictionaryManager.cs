@@ -20,5 +20,7 @@ namespace MultiValueDictionary.Services
         bool GetKeyExists(string key);
 
         List<string> GetDictionaryMembers(string key);
+
+        List<string> GetIntersect(string firstKey, string secondKey);
     }
 }

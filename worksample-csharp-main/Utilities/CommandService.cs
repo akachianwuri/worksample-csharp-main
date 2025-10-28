@@ -18,13 +18,13 @@ namespace MultiValueDictionary.Services
             return _dictionaryManager.GetDictionaryKeys();
         }
 
-        public List<string> ProcessMembersComand(string key)
+        public List<string> ProcessMembersCommand(string key)
         {
             var members = _dictionaryManager.GetDictionaryMembers(key);
 
             if (!members.Any())
             {
-                return new List<string> { "(empty set)" };
+                return new List<string> { ") ERROR, key does not exist." };
             }
 
             return members.AsEnumerable().Select((x, index) => $"{index + 1}) {x}").ToList();
@@ -95,6 +95,11 @@ namespace MultiValueDictionary.Services
             }
 
             return members.ToList();
+        }
+
+        public List<string> ProcessIntersectCommand(string firstKey, string secondKey)
+        {
+            return _dictionaryManager.GetIntersect(firstKey, secondKey);
         }
     }
 }
